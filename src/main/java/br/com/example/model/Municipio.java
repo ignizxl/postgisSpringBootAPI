@@ -27,53 +27,6 @@ public class Municipio implements Serializable {
     @Column(name = "geom")
     private Geometry geometria;
 
-    public Integer getGid() {
-        return gid;
-    }
-
-    public void setGid(Integer gid) {
-        this.gid = gid;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public double getAreaKm2() {
-        return areaKm2;
-    }
-
-    public void setAreaKm2(double areaKm2) {
-        this.areaKm2 = areaKm2;
-    }
-
-    public Geometry getGeometria() {
-        return geometria;
-    }
-
-    public void setGeometria(Geometry geometria) {
-        this.geometria = geometria;
-    }
 
     @Override
     public String toString() {

@@ -1,9 +1,10 @@
-package br.com.example.controller;
+ package br.com.example.controller;
 
 import java.util.List;
 import br.com.example.repository.MunicipioRepository;
 import br.com.example.model.MunicipioVO;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,20 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @OpenAPIDefinition(info = @Info(title = "Municípios API", version = "1.0", description = "Dados de Municípios"))
 public class MunicipioController {
-    
+
     @Autowired
     private MunicipioRepository repository;
-     
+
+    @Operation(summary = "Retorna os municipios vizinhos")
+
     @GetMapping("/municipiosVizinhos/{nome}")
-    public List<MunicipioVO> municipiosVizinhos(@PathVariable String nome){
+    public List<MunicipioVO> municipiosVizinhos(@PathVariable String nome) {
         List<MunicipioVO> result = repository.listarMunicipiosVizinhos(nome);
         return result;
     }
-   
+
+    @Operation(summary = "Retorna a distancia entre dois municipios")
     @GetMapping("/distanciaEntreMunicipios/{municipioA}/{municipioB}")
-     public Double distanciaEntreMunicipios(@PathVariable String municipioA, @PathVariable String municipioB){
+    public Double distanciaEntreMunicipios(@PathVariable String municipioA, @PathVariable String municipioB) {
         double result = repository.distanciaEntreMunicipios(municipioA, municipioB);
         return result;
-    }    
-    
+    }
+
 }

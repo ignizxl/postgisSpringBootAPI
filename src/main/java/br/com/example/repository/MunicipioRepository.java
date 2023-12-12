@@ -7,7 +7,6 @@ package br.com.example.repository;
 import br.com.example.model.Municipio;
 import br.com.example.model.MunicipioVO;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -22,4 +21,5 @@ public interface MunicipioRepository extends JpaRepository<Municipio, Integer>{
      
     @Query(value ="select distance(geography(ma.geometria), geography(mb.geometria)) from Municipio ma, Municipio mb where ma.nome = :municipioA  and   mb.nome = :municipioB")
     public Double distanciaEntreMunicipios(String municipioA, String municipioB);
+   
 }
