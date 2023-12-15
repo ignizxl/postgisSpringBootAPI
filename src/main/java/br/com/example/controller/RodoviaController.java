@@ -1,6 +1,6 @@
 package br.com.example.controller;
 
-import br.com.example.repository.FerroviaRepository;
+import br.com.example.repository.RodoviaRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -22,23 +22,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @CrossOrigin(origins = "*")
-@OpenAPIDefinition(info = @Info(title = "Ferrovia API", version = "1.0", description = "Dados das Ferrovias"))
-public class FerroviaController {
+@OpenAPIDefinition(info = @Info(title = "Rodovia API", version = "1.0", description = "Dados das rodovias"))
+public class RodoviaController {
     @Autowired
-    private FerroviaRepository repository;
+    private RodoviaRepository repository;
     
-    @Operation(summary = "Utiliza o nome da ferrovia para retornar os estados pelo qual a ferrovia passa.")
-    @GetMapping("/ferrovia/estados/{nomeFerrovia}")
-    public List<String> estadosPercurso(@PathVariable String nomeFerrovia) {
-        var result = repository.estadoPercurso(nomeFerrovia);
+    @Operation(summary = "Utiliza o nome da rodovia para retornar os estados pelo qual a ferrovia passa.")
+    @GetMapping("/rodovia/estados/{nomeFerrovia}")
+    public List<String> estadosPercurso(@PathVariable String nomeRodovia) {
+        var result = repository.estadoPercurso(nomeRodovia);
         return result;
     }
     
-    @Operation(summary = "Utiliza a sigla do estado para retornar todas suas ferrovias.")
-    @GetMapping("/ferrovia/{estadoSigla}")
-    public List<String> ferroviasPorEstado(@PathVariable String estadoSigla) {
-        var result = repository.ferroviaPorEstado(estadoSigla);
+    @Operation(summary = "Utiliza a sigla do estado para retornar todas suas rodovias.")
+    @GetMapping("/rodovia/{estadoSigla}")
+    public List<String> rodoviasPorEstado(@PathVariable String estadoSigla) {
+        var result = repository.rodoviasPorEstado(estadoSigla);
         return result;
     }
-
+    
 }

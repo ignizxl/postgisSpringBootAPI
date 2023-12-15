@@ -13,10 +13,17 @@ import org.springframework.data.jpa.repository.Query;
  *
  * @author joão igor
  */
-public interface FerroviaRepository extends JpaRepository<Ferrovia, Integer>{
-    // Retorna os estados que são cruzados por uma rodovia
+public interface FerroviaRepository extends JpaRepository<Ferrovia, Integer> {
+
+    // Retorna os estados que são cruzados por uma ferrovia
     @Query(value = "SELECT ferro.ferrovia, estado.sigla_uf FROM Ferrovia ferro, Estado estado "
             + "WHERE (st_intersects(ferro.geom, estado.geom) = 'TRUE') "
             + "AND ferro.ferrovia LIKE %:nomeFerrovia%")
     public List<String> estadoPercurso(String nomeFerrovia);
+
+    @Query(value = "SELECT ferro.ferrovia, estado.sigla_uf FROM Ferrovia ferro, Estado estado "
+            + "WHERE (st_intersects(ferro.geom, estado.geom) = 'TRUE') "
+            + "AND  estado.sigla_uf LIKE %:estadoSigla%")
+    public List<String> ferroviaPorEstado(String estadoSigla);
+
 }

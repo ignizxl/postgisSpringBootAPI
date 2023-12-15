@@ -41,4 +41,12 @@ public class ArmazemController {
         var result = repository.qtdArmazemPorEstado(estadoSigla);
         return result;
     }
+    
+    @Operation(summary = "Retorna o municipio com o maior armazem de um estado")
+    @GetMapping("/armazem/maior/{estadoSigla}")
+    public List<String> maiorArmazemEstado(@PathVariable String estadoSigla) {
+        var result = repository.maiorArmazem(estadoSigla);
+        return result;
+    }
+    
 }

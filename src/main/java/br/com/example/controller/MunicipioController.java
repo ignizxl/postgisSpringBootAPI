@@ -29,10 +29,25 @@ public class MunicipioController {
     }
 
     @Operation(summary = "Retorna a distancia entre dois municipios")
-    @GetMapping("/distanciaEntreMunicipios/{municipioA}/{municipioB}")
+    @GetMapping("/municipio/vizinhos/{municipioA}/{municipioB}")
     public Double distanciaEntreMunicipios(@PathVariable String municipioA, @PathVariable String municipioB) {
         double result = repository.distanciaEntreMunicipios(municipioA, municipioB);
         return result;
     }
-
+    
+    @Operation(summary = "Retorna os portos mais próximo")
+    @GetMapping("/municipio/porto/{municipioNome}")
+    public List<String> portoMaisProximo(@PathVariable String municipioNome) {
+        List<String> result = repository.portoMaisProximo(municipioNome);
+        return result;
+    }
+    
+    
+    @Operation(summary = "Retorna o aeroporto mais próximo")
+    @GetMapping("/municipio/aeroporto/{municipioNome}")
+    public List<String> aeroportoMaisProximo(@PathVariable String municipioNome) {
+        List<String> result = repository.aeroportoMaisProximo(municipioNome);
+        return result;
+    }
+        
 }

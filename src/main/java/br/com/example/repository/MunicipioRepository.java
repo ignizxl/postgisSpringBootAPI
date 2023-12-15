@@ -21,5 +21,15 @@ public interface MunicipioRepository extends JpaRepository<Municipio, Integer>{
      
     @Query(value ="select distance(geography(ma.geometria), geography(mb.geometria)) from Municipio ma, Municipio mb where ma.nome = :municipioA  and   mb.nome = :municipioB")
     public Double distanciaEntreMunicipios(String municipioA, String municipioB);
+    
+     @Query(value ="SELECT porto.municipio, distance(geography(porto.geom), geography(mun.geometria)) AS distancia FROM Porto porto, Municipio mun "
+            + "WHERE mun.nome = :municipioNome ORDER BY distancia")
+    public List<String> portoMaisProximo(String municipioNome);
+    
+    
+    @Query(value = "SELECT aero.municipio, distance(geography(aero.geom), geography(mun.geometria)) AS distancia FROM Aeroporto aero, Municipio mun "
+            + "WHERE mun.nome = :municipioNome ORDER BY distancia")
+    public List<String> aeroportoMaisProximo(String municipioNome);
+    
    
 }

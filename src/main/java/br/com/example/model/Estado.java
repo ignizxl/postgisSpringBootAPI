@@ -34,7 +34,13 @@ public class Estado implements Serializable {
     @Column(name = "cd_uf")
     private String cd_uf;
     
+    @Column(name = "nm_regiao")
+    private String nm_regiao;
+     
     @Column(name = "geom")
     private Geometry geom;
+    
+    @Column(name = "area")
+    private Double area;
 
 }

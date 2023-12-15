@@ -22,8 +22,11 @@ public interface ArmazemRepository extends JpaRepository<Armazem, Integer>{
     
     // Retorna a quantidade de armazéns de um estado
     @Query(value = "SELECT uf, count(*) AS qtd_armazens FROM Armazem WHERE uf LIKE :sigla GROUP BY uf ORDER BY uf")
-    public List<String> qtdArmazemPorEstado(String sigla);
-
+    public List<String> qtdArmazemPorEstado(String sigla);   
+    
+    // Query nativa: Retorna o maior armazem de um estado
+    @Query(value = "SELECT municipio,(ST_Area(geom)) AS area FROM armazens_2014 WHERE uf = :sigla ORDER BY area DESC  LIMIT 1", nativeQuery = true)
+    public List<String> maiorArmazem(String sigla);
 }
 
 

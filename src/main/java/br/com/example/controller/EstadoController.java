@@ -4,6 +4,7 @@
  */
 package br.com.example.controller;
 
+import br.com.example.model.EstadoView;
 import br.com.example.repository.EstadoRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,8 +60,22 @@ public class EstadoController {
     
     @Operation(summary = "Retorna os estados vizinhos de um estado localizado pela sigla")
     @GetMapping("/estado/vizinhos/{estadoSigla}")
-    public List<String> estadosVizinhos(@PathVariable String estadoSigla) {
+    public List<EstadoView> estadosVizinhos(@PathVariable String estadoSigla) {
         var result = repository.estadosVizinhos(estadoSigla);
+        return result;
+    }
+    
+    @Operation(summary = "Retorna o maior municipo de um estado")
+    @GetMapping("/estado/municipio/maior/{estadoSigla}")
+    public List<String> maiorMunicipio(@PathVariable String estadoSigla) {
+        var result = repository.maiorMunicipio(estadoSigla);
+        return result;
+    }
+    
+    @Operation(summary = "Retorna o tamanho do estado buscando pela sigla")
+    @GetMapping("/estado/municipio/tamanho/{estadoSigla}")
+    public List<String> tamanhoEstado(@PathVariable String estadoSigla) {
+        var result = repository.tamanhoEstado(estadoSigla);
         return result;
     }
   
